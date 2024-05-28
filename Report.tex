@@ -1,0 +1,1435 @@
+\documentclass[12pt, English]{article}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage[spanish]{babel}
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\usepackage[svgnames]{xcolor}
+\renewcommand{\baselinestretch}{1.5}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{sectsty}
+\usepackage{fancyhdr}
+\fancyfoot[C]{}
+\renewcommand{\headrulewidth}{4pt}
+\renewcommand{\footrulewidth}{4pt}
+\sectionfont{\fontsize{17.28}{17.28}\selectfont}
+\usepackage{mathptmx}
+\usepackage[font=small,labelfont=bf]{caption}
+\renewcommand{\figurename}{Figure}
+\usepackage[figurename=Figure]{caption}
+\usepackage{ragged2e}
+\usepackage{multirow}
+\addtolength{\topmargin}{-57pt}
+\addtolength{\oddsidemargin}{92pt}
+\addtolength{\footskip}{50pt}
+\justifying
+
+\usepackage{listings}
+\usepackage{afterpage}
+\usepackage{needspace}
+\pagestyle{plain}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+%\lstset{language=R,
+% basicstyle=\small\ttfamily,
+% stringstyle=\color{DarkGreen},
+% otherkeywords={0,1,2,3,4,5,6,7,8,9},
+% morekeywords={TRUE,FALSE},
+% deletekeywords={data,frame,length,as,character},
+% keywordstyle=\color{blue},
+% commentstyle=\color{DarkGreen},
+%}
+
+\lstset{frame=tb,
+language=R,
+aboveskip=3mm,
+belowskip=3mm,
+showstringspaces=false,
+columns=flexible,
+numbers=none,
+keywordstyle=\color{blue},
+numberstyle=\tiny\color{gray},
+commentstyle=\color{dkgreen},
+stringstyle=\color{mauve},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=3
+}
+
+\usepackage{here}
+
+\textheight=21cm
+\textwidth=17cm
+%\topmargin=-1cm
+\oddsidemargin=0cm
+\parindent=0mm
+\pagestyle{plain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% La siguiente instrucciÃ³n pone el curso automÃ¡ticamente%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{color}
+\usepackage{ragged2e}
+
+\captionsetup[table]{name=Table}
+\global\let\date\relax
+\newcounter{unomenos}
+\setcounter{unomenos}{\number\year}
+\addtocounter{unomenos}{-1}
+\stepcounter{unomenos}
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{center}
+\vspace*{-1in}
+
+%==========================================================================
+%==========================================================================
+\begin{Large}
+\vspace*{0.1in}
+\textbf{A Project Report\\on}
+\end{Large}
+\vspace*{0.0in}
+\textbf{\Large \\ ATHLETIC RUNNER INJURY PREDICTION SYSTEM}
+
+%==========================================================================
+\begin{large}
+\textbf{{Submitted in partial fulfillment of the requirements \\
+for the award of degree of}}\\
+\end{large}
+%==========================================================================
+%==========================================================================
+\begin{large}
+{\textbf{BACHELOR OF TECHNOLOGY \\ in\\ Information Technology\\by}}\\
+\end{large}
+%===========================================================================
+
+\textit{\textbf{\large Talari Akhila (20WH1A1267)}} \\
+\textit{\textbf{\large Aesuri Divya Sri (20WH1A1280)}} \\
+\textit{\textbf{\large Kalekere Sunidhi (20WH1A1284)}} \\
+\textit{\textbf{\large Bolle Amulya (20WH1A1294)}} \\
+%==========================================================================
+\begin{large}
+\textit{\textbf{Under the esteemed guidance of}}\\
+\end{large}
+%==========================================================================
+\textbf{\large \textit {Dr. P. Kayal }}\\
+
+\textbf{\large \textit {Associate Professor}}\\
+%==========================================================================
+\begin{center}
+\includegraphics[width=1.5cm]{Vishnu.png}
+\end{center}
+%==========================================================================
+\begin{large}
+\textbf{Department of Information Technology}\\
+\end{large}
+%==========================================================================
+\begin{Large}
+\textbf{BVRIT HYDERABAD College of Engineering for Women}\\
+\end{Large}
+\begin{normalsize}
+\textbf{ Rajiv Gandhi Nagar, Nizampet Road, Bachupally, Hyderabad – 500090}
+
+%===========================================================================
+\textbf{(Affiliated to Jawaharlal Nehru Technological University, Hyderabad)}\\
+
+\textbf{(NAAC ‘A’ Grade \&amp; NBA Accredited- ECE, EEE, CSE and IT)}\\
+
+\end{normalsize}
+\begin{large}
+\vspace{0.01in}
+\textbf{ June, 2024}\\
+\end{large}
+\end{center}
+\end{titlepage}
+%===========================================================================
+
+\newcommand{\CC}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-
+.10em}\raisebox{.4ex}{\tiny\bf +}}
+\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+%===========================DECLARATION=====================================
+\begin{titlepage}
+\begin{center}
+\textbf{\LARGE DECLARATION}\\
+\end{center}
+\vspace*{0.2in}
+
+We hereby declare that the work presented in this project entitled {\textbf{“Athletic Runner Injury \\Prediction System”}} submitted towards completion of in IV year II
+sem of B.Tech IT at “BVRIT\\ HYDERABAD College of Engineering for Women”, Hyderabd is an authentic
+record of our original work carried out under the esteemed guidance of { Dr. P. Kayal, Associate
+Professor}, Department of Information Technology.
+
+\raggedleft
+\vspace*{0.5in}
+
+\textcolor{black}{Talari Akhila (20WH1A1267)}\\
+\raggedleft
+\vspace*{0.3in}
+\textcolor{black}{Aesuri Divya Sri (20WH1A1280)}\\
+\raggedleft
+\vspace*{0.3in}
+\textcolor{black}{Kalekere Sunidhi (20WH1A1284)}\\
+\raggedleft
+\vspace*{0.3in}
+\textcolor{black}{Bolle Amulya (20WH1A1294)}\\
+
+\end{titlepage}
+%===========================================================================
+
+%===========================CERTIFICATE=====================================
+\begin{titlepage}
+\vspace*{-0.5in}
+\begin{center}
+\includegraphics[width=2cm]{Vishnu.png}
+\end{center}
+%===========================================================================
+\begin{center}
+\begin{large}
+\textbf{BVRIT HYDERABAD\\ College of Engineering for Women}\\
+\end{large}
+\begin{footnotesize}
+\textbf{ Rajiv Gandhi Nagar, Nizampet Road, Bachupally, Hyderabad – 500090}\\
+\vspace*{0.1in}
+\textbf{(Affiliated to Jawaharlal Nehru Technological University Hyderabad)}\\
+\textbf{(NAAC ‘A’ Grade \&amp; NBA Accredited- ECE, EEE, CSE and IT)}\\
+\end{footnotesize}
+\end{center}
+%===========================================================================
+\begin{center}
+\textbf{\large CERTIFICATE}\\
+\end{center}
+
+\begin{normalsize}
+
+This is to certify that the Project report on {\textbf{“Athletic Runner Injury Prediction System”}} is a bonafide work carried out by {\textbf{Talari Akhila (20WH1A1267), Aesuri Divya Sri (20WH1A1280), Kalekere Sunidhi (20WH1A1284)}} and {\textbf{Bolle Amulya (20WH1A1294)}} in the
+partial fulfillment for the award of B.Tech degree in \textbf{Information Technology , BVRIT
+HYDERABAD College of Engineering for Women, Bachupally, Hyderabad} affiliated to Jawaharlal
+Nehru Technological University, \\Hyderabad under my guidance and supervision.
+\newline
+\tab The results embodied in the project work have not been submitted to any other university or
+institute for the award of any degree or diploma.
+\end{normalsize}
+\vspace*{0.6in}
+
+\noindent 
+{\begin{normalsize}
+{\textbf{Internal Guide}}
+\end{normalsize}
+}
+\hfill 
+{
+\begin{normalsize}
+\textbf{ Head of the Department}
+\end{normalsize}
+}\\
+%===========================================================================
+\noindent 
+{\begin{normalsize}
+{\textbf{Dr. P. Kayal }}
+\end{normalsize}
+}
+\hfill 
+{
+\begin{normalsize}
+\textbf{Dr. Aruna Rao S. L}
+\end{normalsize}
+}\\
+%===========================================================================
+\noindent
+{\begin{normalsize}
+{\textbf{Associate Professor}}
+\end{normalsize}
+}
+%\hspace{9.4cm}
+\hfill {
+\begin{normalsize}
+\textbf{Professor \& HoD }
+\end{normalsize}
+}\\
+%===========================================================================
+\noindent 
+{\begin{normalsize}
+{\textbf{Department of IT}}
+\end{normalsize}
+}
+\hfill
+{
+\begin{normalsize}
+{\textbf{Department of IT}}
+\end{normalsize}
+}
+
+\vspace{0.5in}
+\noindent 
+{\begin{center}
+{\textbf {External Examiner}}
+\end{center}
+}
+
+\end{titlepage}
+%===========================================================================
+%===========================ACKNOWLEDGEMENT=================================
+\begin{titlepage}
+\begin{center}
+\textbf{\normalsize \underline{ACKNOWLEDGEMENT}}\\
+\end{center}
+\vspace*{0.2in}
+\begin{normalsize}
+We would like to express our profound gratitude and thanks to \textbf{Dr. K. V. N. Sunitha, Principal,
+BVRIT HYDERABAD College of Engineering for Women} for providing the working facilities in the
+college.\\
+\newline
+Our sincere thanks and gratitude to \textbf{Dr. Aruna Rao S. L, Professor and HoD, Department of IT,
+BVRIT HYDERABAD College of Engineering for Women} for all the timely support, constant guidance
+and valuable suggestions during the period of our project.\\
+\newline
+We are extremely thankful and indebted to our internal guide, \textbf{Dr. P. Kayal, Associate
+Professor, Department of IT, BVRIT HYDERABAD College of Engineering for Women} for her constant
+guidance, encouragement and moral support throughout the project.\\
+\newline
+Finally, we would also like to thank our Project Coordinators \textbf{Dr. J. Kavitha, Associate Professor} and \textbf{Dr. Mukhtar Ahmad Sofi, Assistant Professor}, all the faculty and staff of Department of IT who helped us
+directly or indirectly, parents and friends for their cooperation in completing the project work.
+\end{normalsize}
+
+\raggedleft
+\vspace*{0.5in}
+\begin{normalsize}
+{Talari Akhila (20WH1A1267))}\\ \\
+\vspace*{0.25in}
+\raggedleft
+
+{Aesuri Divya Sri (20WH1A1280)}\\ \\
+\vspace*{0.25in}
+\raggedleft
+{Kalekere Sunidhi (20WH1A1284)}\\\\
+\vspace*{0.25in}
+\raggedleft
+{Bolle Amulya (20WH1A1294)}\\ \\
+\raggedleft
+\end{normalsize}
+\end{titlepage}
+%===========================ABSTRACT========================================
+\begin{titlepage}
+
+\begin{center}
+\textbf{\Large ABSTRACT}\\
+\end{center}
+
+\begin{normalsize}
+Competitive running, with its rigorous training regimens and intense competition, exposes
+athletes to a heightened risk of injuries that can profoundly impact performance and long-term
+careers. Prior approaches to injury prediction in runners have often relied on simplistic models
+or lacked comprehensive data integration. Existing methods, while valuable, have limitations
+in terms of their accuracy and applicability. Many fail to consider the dynamic nature of injury
+risk across training cycles, individual variability, and environmental factors. Additionally,
+interpretability and athlete-specific recommendations remain challenges. The proposed method
+combines diverse attributes including biomechanical data, training load metrics of the athlete
+to build a comprehensive injury prediction model. It employs various machine learning
+approaches to capture complex relationships within the data for early injury prediction. It
+establishes a feedback loop mechanism that enables athletes and coaches to act upon the
+model's predictions, adjusting training plans and injury prediction as needed. Additionally, the
+system conducts a thorough comparison of various machine learning algorithms to identify and
+employ the most accurate algorithm for the task at hand. This system aims to improve the well-
+being of competitive runners by reducing the risk of injuries, which is in line with Sustainable
+Development Goals, ensuring healthy lives and promoting well-being for all.
+\end{normalsize}\\\\\\\\\\\\\\\\\\\\
+\begin{normalsize}
+\begin{center}
+\vspace*{\fill}
+\textbf{V}
+\end{center}
+\end{normalsize}
+\end{titlepage}
+%=====================LIST-OF-FIGURES======================================
+\begin{titlepage}
+
+\begin{center}
+\vspace{-100cm}
+\textbf{\large LIST OF FIGURES}
+\end{center}
+
+\begin{center}
+\begin{normalsize}
+\begin{tabular}{|c|l|c|}
+\hline
+\normalsize\textbf{Figure No.} & \normalsize\textbf{Figure Name} & \normalsize\textbf{Page
+No.} \\
+\hline
+3.1.1 & Architecture of the system & 21\\ \hline
+3.3.1.1 & Class Diagram & 24\\ \hline
+3.3.2.1 & Activity Diagram & 25\\ \hline
+4.1.1 & Dataset & 26\\ \hline
+4.2.1 & Importing libraries & 28\\ \hline
+4.2.2 & Reading the dataset and data preprocessing & 28\\ \hline
+4.2.3 & Performing data extraction & 29\\ \hline
+4.2.4 & Non-injury and injury instances & 29\\ \hline
+4.2.5 & Non-injury and injury instances & 3\\ \hline
+4.2.6 & Predicting injury with SVM algorithm & 30\\ \hline
+4.2.7 & Predicting injury with Bagging algorithm & 31\\ \hline
+4.2.8 & Predicting Injury with XGBooster algorithm & 31\\ \hline
+4.2.9 & Predicting Injury with Decision Tree algorithm & 32\\ \hline
+4.2.10 & Predicting Injury with MLP algorithm & 32\\ \hline
+4.2.11 & Predicting Injury with RNN algorithm & 33\\ \hline
+4.2.12 & Predicting Injury with LSTM algorithm & 33\\ \hline
+5.1 & Confusion matrix for SVM & 37\\ \hline
+5.2 & Confusion matrix for Bagging & 37\\ \hline
+5.3 & Confusion matrix for XGBooster & 38\\ \hline
+5.4 & Confusion matrix for Decision Tree & 38\\ \hline
+5.5 & Confusion matrix for MLP & 39\\ \hline
+5.6 & Confusion matrix for RNN & 39\\ \hline
+5.7 & Confusion matrix for LSTM & 40\\ \hline
+
+\end{tabular}
+\begin{normalsize}
+\begin{center}
+\vspace*{\fill}
+\textbf{VI}
+\end{center}
+\end{normalsize}
+\end{normalsize}
+\end{titlepage}
+
+\begin{titlepage}
+
+\begin{center}
+\vspace{-100cm}
+\textbf{\large LIST OF FIGURES}
+\end{center}
+
+\begin{center}
+\begin{normalsize}
+\begin{tabular}{|c|l|c|}
+\hline
+\normalsize\textbf{Figure No.} & \normalsize\textbf{Figure Name} & \normalsize\textbf{Page
+No.} \\
+\hline
+5.8 & Validation Curve for SVM & 40\\ \hline
+5.9 & Validation Curve for Bagging & 41\\ \hline
+5.10 & Validation Curve for XGBooster & 41\\ \hline
+5.11 & Validation Curve for Decision Tree & 42\\ \hline
+5.12 & Validation Curve for MLP & 42\\ \hline
+5.13 & Validation Curve for RNN & 43\\ \hline
+5.14 & Validation Curve for LSTM & 43\\ \hline
+\end{tabular}
+\begin{normalsize}
+\begin{center}
+\vspace*{\fill}
+\textbf{VII}
+\end{center}
+\end{normalsize}
+\end{normalsize}
+\end{titlepage}
+
+
+\begin{titlepage}
+
+\begin{center}
+\vspace{-100cm}
+\textbf{\large LIST OF TABLES}
+\end{center}
+\begin{center}
+\begin{normalsize}
+\begin{tabular}{|c|l|c|}
+\hline
+\normalsize\textbf{Table No.} & \normalsize\textbf{Table Name} & \normalsize\textbf{Page
+No.} \\
+\hline
+2.1 & Analysis of used methods & 8\\ \hline
+5.1 (a) & Performance metrics for Machine Learning algorithms & 45\\ \hline
+5.1 (b) & Performance metrics for Deep Learning algorithms & 45\\ \hline
+
+\end{tabular}
+\begin{normalsize}
+\begin{center}
+\vspace*{\fill}
+\textbf{VIII}
+\end{center}
+\end{normalsize}
+\end{normalsize}
+\end{titlepage}
+
+%=====================LIST-OF-ABBREVATIONS======================================
+\begin{titlepage}
+
+\begin{center}
+\vspace{-100cm}
+\textbf{\large LIST OF ABBREVATIONS}
+\end{center}
+
+\begin{center}
+\begin{normalsize}
+\begin{tabular}{|c|l|c|}
+
+\hline
+\normalsize\textbf{Abbrevation} & \normalsize\textbf{Meaning} \\
+\hline
+
+SVM & Support Vector Machines\\
+\hline
+MLP & Multi Layer Perceptron \\
+\hline
+RNN & Recurrent Neural Networks\\
+\hline
+LSTM & Long Short-Term Memory \\
+\hline
+
+\end{tabular}
+\begin{normalsize}
+\begin{center}
+\vspace*{\fill}
+
+\textbf{IX}
+\end{center}
+\end{normalsize}
+\end{normalsize}
+\end{titlepage}
+%==========================================================================
+\newpage
+%=====================CONTENTS=============================================
+\begin{titlepage}
+\begin{center}
+\textbf{\Large CONTENTS}
+\end{center}
+\vspace*{0.20in}
+\noindent
+{\begin{normalsize}
+\textbf{\tab TOPIC}
+\end{normalsize}
+}
+\hfill
+{
+\begin{normalsize}
+\textbf{PAGE NO.}
+\end{normalsize}
+}\\
+%===========================================================================
+%==========================================================================
+
+\noindent
+{\begin{large}
+\textbf{ \tab Abstract}
+\end{large}
+}
+\hfill
+{
+\begin{normalsize}
+\textbf{V}
+\end{normalsize}
+}\\
+%==========================================================================
+\noindent
+{\begin{large}
+\textbf{ \tab List of Figures}
+\end{large}
+}
+\hfill
+{
+\begin{normalsize}
+\textbf{VI}
+\end{normalsize}
+}\\
+\noindent
+{\begin{large}
+\textbf{ \tab List of Tables}
+\end{large}
+}
+\hfill
+{
+\begin{normalsize}
+\textbf{VIII}
+\end{normalsize}
+}\\
+%==========================================================================
+\noindent
+{\begin{large}
+\textbf{ \tab List of Abbrevations}
+\end{large}
+}
+\hfill
+{
+\begin{normalsize}
+\textbf{IX}
+\end{normalsize}
+}\\
+%=============================================================================
+\noindent
+{\begin{large}
+\textbf{\tab 1. Introduction}
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{1}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 1.1 Objective }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{2}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 1.2 Motivation }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{4}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 1.3 Problem Definition }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{5}
+\end{large}
+}
+\\
+\noindent
+{\begin{large}
+\textbf{\tab 2. Literature Survey}
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{7}
+\end{large}
+}
+\\
+\noindent
+{\begin{large}
+\textbf{\tab 3. System Design }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{18}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 3.1 Architecture }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{19}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 3.2 Tools and Technologies }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{20}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 3.3 UML Diagram }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{22}
+\end{large}
+}
+\\
+\noindent
+{\begin{large}
+\textbf{\tab 4. Implementation}
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{26}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 4.1 Dataset }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{26}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\text{ \tab\tab 4.2 Code }
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{28}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\textbf{\tab 5. Results and Discussions}
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{36}
+\end{large}
+}
+
+\begin{large}
+\textbf{\tab 6. Conclusion and Future Scope}
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{47}
+\end{large}
+}
+
+\noindent
+{\begin{large}
+\textbf{\tab\tab References}
+\end{large}
+}
+\hfill
+{
+\begin{large}
+\textbf{48}
+\end{large}
+}
+\end{titlepage}
+%==========================================================================
+
+\newpage
+
+\pagestyle{fancy}
+\rhead{\footnotesize Athletic Runner Injury Prediction System}
+\fancyfoot[L]{\footnotesize Department of Information Technology}
+\fancyfoot[R]{\footnotesize\thepage}
+
+\begin{center}
+\section{\Large INTRODUCTION}
+\end{center}
+\begin{normalsize}
+
+\tab In the realm of sports science, the pursuit of excellence is often intertwined with the ever-present specter of injuries, particularly for competitive runners who navigate a labyrinth of challenges on their quest for glory. From the grueling demands of training regimens to the adrenaline-fueled crucible of competitions, these athletes walk a tightrope between peak performance and the looming threat of physical breakdown. In this high-stakes arena, injury prediction emerges as a linchpin of athletic well-being, offering a beacon of foresight in a landscape fraught with uncertainty.\\
+
+\tab Traditionally, injury prediction methods within the domain of athletic running have languished in the shadows of their counterparts in other sports, hamstrung by simplistic models and rudimentary datasets. These antiquated approaches, ill-equipped to grapple with the nuanced interplay of factors shaping injury risks, often fall short of delivering timely insights or actionable recommendations for athletes and coaches alike. Against this backdrop of inadequacy, the need for a paradigm shift in injury prediction methodology becomes increasingly apparent, heralding the dawn of a new era in sports science.\\
+
+\tab Enter the Athletic Runner Injury Prediction System, a revolutionary framework poised to redefine the contours of injury prevention in the athletic arena. At its core lies a synthesis of cutting-edge technologies and data-driven methodologies, underpinned by a relentless pursuit of excellence and innovation. This system represents not merely an evolution but a revolution, an audacious leap forward in the quest to safeguard athlete well-being and optimize performance.\\
+
+\tab Central to the ethos of the Athletic Runner Injury Prediction System is a recognition of the multifaceted nature of injury risks inherent in the realm of competitive running. Unlike its predecessors, shackled by the constraints of reductionist thinking and limited data, this system embraces a holistic approach, integrating diverse attributes ranging from biomechanical data to training load metrics and environmental factors. In doing so, it paints a panoramic portrait of injury risks, illuminating the intricate tapestry of variables that underpin athletic well-being.\\
+
+\tab Yet, the true essence of the Athletic Runner Injury Prediction System lies not merely in its capacity to amass data but in its ability to distill insights from this wealth of information. Leveraging advanced machine learning techniques, the system transcends the boundaries of traditional statistical models, delving deep into the labyrinthine corridors of integrated data sets to unearth hidden patterns and relationships. It is through this alchemy of technology and innovation that the system unlocks the secrets of injury prediction, offering a glimpse into the future of athletic well-being.\\
+
+\tab Moreover, what sets this system apart is its unwavering commitment to proactive injury prevention, epitomized by its real-time feedback loop mechanism. Through continuous monitoring of injury risks, athletes and coaches are empowered to adapt training plans on the fly, preempting injuries and optimizing performance. This dynamic feedback loop not only mitigates the likelihood of injuries but also fosters a culture of adaptability and resilience among athletes, laying the groundwork for sustained success on the track and beyond.\\
+
+\tab In the crucible of athletic competition, where the margin between victory and defeat is often measured in fractions of a second, the importance of injury prediction cannot be overstated. It is a beacon of foresight in a landscape fraught with uncertainty, offering athletes and coaches a roadmap to navigate the treacherous terrain of competitive running. As the Athletic Runner Injury Prediction System continues to evolve and expand its horizons, it stands as a testament to the transformative potential of sports science in shaping a healthier, more resilient future for athletes worldwide.
+\\\\
+\begin{large}
+\textbf{1.1. Objective}
+\end{large}
+\\
+\begin{normalsize}
+\tab The objective of this project is to develop an Athletic Runner Injury Prediction System using advanced machine learning techniques. The system aims to proactively prevent injuries among runners by analyzing a diverse dataset encompassing training variables, and injury history. Employing state-of-the-art algorithms, the model seeks to provide actionable insights for optimizing training strategies while ensuring interpretability. Rigorous validation will assess the model's accuracy, contributing valuable knowledge to sports science and supporting informed decision-making for athletes, coaches, and healthcare professionals.\\
+
+\tab The aim of the Athletic Runner Injury Prediction System is to pioneer a groundbreaking approach to injury prevention in the realm of competitive running, leveraging the power of advanced machine learning techniques. At its core, the system seeks to transcend traditional reactive approaches to injury management by proactively identifying and mitigating injury risks before they manifest.\\
+
+\tab Central to the system's mission is the analysis of a diverse and comprehensive dataset that encapsulates a myriad of variables crucial to understanding injury dynamics in athletic running. From training variables such as intensity, duration, and frequency to injury history and biomechanical data, the dataset serves as a rich tapestry of information, offering invaluable insights into the multifaceted nature of injury risks.\\
+
+\tab Employing state-of-the-art algorithms and cutting-edge methodologies, the system endeavors to distill actionable insights from this wealth of data. Unlike conventional injury prediction models that may sacrifice interpretability for accuracy, the Athletic Runner Injury Prediction System prioritizes both, ensuring that the recommendations it provides are not only precise but also comprehensible to athletes, coaches, and healthcare professionals.\\
+
+\tab Moreover, rigorous validation lies at the heart of the system's development process, serving as a litmus test for its efficacy and reliability. By subjecting the predictive models to comprehensive validation procedures, the system aims to ascertain their accuracy and robustness across diverse athletic contexts. This validation process not only instills confidence in the system's predictive capabilities but also contributes valuable knowledge to the field of sports science, enriching our understanding of injury prevention strategies in athletic running.\\
+
+\tab Ultimately, the objective of the Athletic Runner Injury Prediction System extends beyond mere technological innovation. It represents a concerted effort to support informed decision-making for athletes, coaches, and healthcare professionals, empowering them with the insights needed to optimize training strategies and safeguard athlete well-being. By bridging the gap between cutting-edge research and practical application, the system stands poised to revolutionize injury prevention in competitive running, paving the way for a healthier and more resilient athletic community.
+\end{normalsize}
+\\\\
+\begin{large}
+\textbf{1.2. Motivation}
+\end{large}
+\\
+\begin{normalsize}
+    \tab Running-related injuries pose a significant challenge to the health and performance of marathon runners worldwide. Despite advancements in sports science and training methodologies, the incidence of injuries remains prevalent, impacting athletes’ ability to achieve their full potential and compromising their long-term participation in the sport. The motivation behind this research stems from the urgent need to address, this persistent issue and develop proactive strategies for injury prevention. Marathon running is a physically demanding activity that places immense stress on the musculoskeletal system, increasing the risk of overuse injuries, such as stress fractures, tendinopathies, and ligament sprains. These injuries not only cause physical discomfort and impair performance but also lead to substantial downtime for athletes, affecting their training schedules, competitive aspirations, and overall well-being. Furthermore, the economic burden associated with medical treatment, rehabilitation, and lost productivity due to running-related injuries underscores the need for effective preventive measures. Athletic runner injury prediction system is motivated by the potential impact it can have on the sports community at large. By providing athletes with actionable insights into injury risk factors and warning signs, our predictive model seeks to empower stakeholders to make informed decisions regarding training load management, biomechanical optimization, and injury prevention strategies. Ultimately, our goal is to contribute to the promotion of athlete welfare, the enhancement of sports performance, and the advancement of scientific knowledge in the field of sports medicine.
+\end{normalsize}
+\\\\
+\begin{large}
+\textbf{1.3. Problem Definition}
+\end{large}\\
+\begin{normalsize}
+\tab The problem addressed by this project lies in the absence of a tailored and proactive system for predicting and preventing injuries among athletic runners. Current approaches often lack the sophistication needed to leverage advanced machine learning techniques and comprehensive datasets, hindering the accurate identification of injury risks specific to this population. The challenge is to develop an effective Athletic Runner Injury Prediction System that not only integrates diverse data, including biomechanical metrics and training variables but also provides interpretable insights. The ultimate goal is to empower athletes, coaches, and healthcare professionals with a tool that enhances their ability to preemptively address injury risks, optimize training strategies, and contribute to the overall well-being of athletic runners.\\
+
+\tab The project is rooted in the inadequacy of existing approaches to predict and prevent injuries among athletic runners. Despite the inherent risks associated with competitive running, current methodologies often fall short in providing tailored and proactive solutions to mitigate these risks effectively. This gap in injury prevention strategies stems from a lack of sophistication in leveraging advanced machine learning techniques and comprehensive datasets, which are essential for accurately identifying injury risks specific to this population of athletes.\\
+
+\tab At the heart of the challenge lies the need to develop an Athletic Runner Injury Prediction System that transcends the limitations of conventional approaches. Such a system must not only harness the power of advanced machine learning algorithms but also integrate a diverse array of data sources, including biomechanical metrics and training variables. By synthesizing these multifaceted dimensions of information, the system can gain a holistic understanding of injury risks in athletic running, paving the way for more accurate predictions and proactive interventions.\\
+
+\tab Crucially, the challenge extends beyond mere data integration and algorithmic sophistication. The system must also prioritize interpretability, ensuring that the insights it provides are comprehensible and actionable for athletes, coaches, and healthcare professionals. This necessitates the development of methodologies and visualization techniques that enable stakeholders to make informed decisions based on the system's predictions.\\
+
+\tab Ultimately, the ultimate goal of this project is to empower stakeholders within the athletic community with a powerful tool that enhances their ability to preemptively address injury risks, optimize training strategies, and contribute to the overall well-being of athletic runners. By bridging the gap between cutting-edge research and practical application, the Athletic Runner Injury Prediction System seeks to revolutionize injury prevention in competitive running, ushering in a new era of proactive and tailored interventions for athlete well-being.
+\end{normalsize}
+
+\newpage
+\begin{center}
+\section{ \Large LITERATURE SURVEY}
+\end{center}
+
+The systematic review [1] delves into a critical examination of the methodological rigor and reporting completeness of musculoskeletal injury prediction models within the domain of sports medicine, encompassing literature up to June 2021. The review meticulously scrutinized thirty studies comprising a total of 204 models, shedding light on significant methodological disparities and shortcomings in reporting practices.\\
+One of the most striking revelations from the review is the stark contrast in the methodologies employed by the various injury prediction models. A substantial majority, comprising 60\% of the models, relied solely on regression techniques, while a mere 13\% utilized machine learning algorithms. Intriguingly, 27\% of the models employed a combination of both regression and machine learning approaches. This disparity underscores the lack of consensus and standardized methodologies within the field, potentially leading to inconsistencies and discrepancies in predictive performance.\\
+Perhaps even more concerning is the absence of external validation procedures across all the models scrutinized in the review. External validation serves as a litmus test for the robustness and generalizability of predictive models, yet not a single model underwent this crucial validation step. This glaring oversight raises significant doubts regarding the reliability and applicability of the models, as their performance may be compromised when applied to new datasets or different athletic populations.\\
+Furthermore, the review identified numerous shortcomings in reporting practices, exacerbating concerns regarding potential biases and hindrances to reproducibility. Key deficiencies include limited details on sample size calculations, internal validation procedures, and code availability. Without transparent and comprehensive reporting, researchers and practitioners may struggle to assess the validity and reliability of the models, impeding progress in injury prediction and management efforts.\\
+In light of these findings, the review underscores the urgent need for improved methodological standards and reporting practices in the development and evaluation of injury prediction models in sports medicine. By enhancing the transparency, reproducibility, and generalizability of these models, researchers can foster a more robust evidence base for effective injury prevention and management strategies tailored to the unique needs of athletic populations. Ultimately, these efforts hold the potential to significantly improve athlete well-being and performance outcomes in the realm of sports medicine.
+
+\begin{table}[h]
+    \centering
+    \large % Increase font size of table
+       \begin{center}
+           Table 2.1: Analysis of used  methods 
+       \end{center}
+       \newline
+    \\
+        \begin{tabular}{|c|p{5cm}|p{2cm}|p{2cm}|c|} 
+        \hline
+        \textbf{\large S. No} & \textbf{\large Method} & \textbf{\large \% of studies} \\
+        \hline
+        1 & Regression & 60\% \\
+        \hline
+        2 & Machine Learning & 13\% \\
+        \hline
+        3 & Both Regression and Machine Learning & 27\% \\
+        \hline
+    \end{tabular}
+    \label{tab:sample}
+\end{table}
+
+\\
+
+The study [2] provides a deep dive into the realm of injury prediction specifically tailored for competitive runners, utilizing cutting-edge machine learning techniques. Published in the esteemed International Journal of Sports Physiology and Performance, the research introduces an innovative approach centered around machine learning algorithms to forecast injuries among runners, with a particular focus on leveraging training load data as a pivotal input variable.\\
+At the core of this study lies the recognition of the intricate interplay between training load and injury occurrence in the context of competitive running. By harnessing the power of machine learning, the researchers endeavor to develop predictive models capable of discerning subtle patterns and trends within training load data that may serve as precursors or indicators of impending injuries. This represents a significant departure from traditional injury prediction methodologies, which often rely on simplistic models and fail to fully capture the complex dynamics underlying injury risks in athletic populations.\\
+The study embarks on an exhaustive exploration of various machine learning methodologies, ranging from classical regression techniques to more advanced algorithms such as decision trees, random forests, and support vector machines. Through a systematic evaluation of these methodologies, the researchers aim to elucidate the potential of machine learning in enhancing injury prediction capabilities within the realm of competitive running.\\
+Moreover, the paper delves into the intricacies of feature selection and model optimization, highlighting the importance of identifying the most relevant predictors and fine-tuning model parameters to maximize predictive performance. By employing rigorous validation procedures, including cross-validation and external validation, the study aims to ascertain the robustness and generalizability of the developed predictive models.\\
+The findings of this study hold significant implications for the field of sports medicine and athletic performance optimization. By harnessing the power of machine learning to forecast injuries among competitive runners, researchers and practitioners can gain valuable insights into the factors contributing to injury occurrence and develop targeted interventions to mitigate these risks. Ultimately, this research contributes to a growing body of evidence supporting the integration of advanced data-driven approaches in injury prevention and management strategies tailored to the unique needs of athletic populations.
+\\
+
+Paper [3] provides a comprehensive examination of the pervasive issue of injuries in sports, highlighting their significant physical, psychological, and financial ramifications. Recognizing the potential of machine learning (ML) methods to revolutionize injury prediction and prevention strategies, the study sets out to conduct a systematic review of ML methodologies employed in this domain.\\
+ Subsequently, stringent inclusion/exclusion criteria were applied, resulting in the identification of 11 studies deemed relevant for the review. This rigorous selection process ensures the quality and relevance of the studies included in the analysis.\\
+The review unveils a diverse array of ML techniques employed in the realm of sport injury prediction and prevention. Among the methodologies utilized are tree-based ensemble methods, Support Vector Machines (SVM), and Artificial Neural Networks (ANN). These sophisticated ML algorithms hold the promise of uncovering intricate patterns and relationships within injury data, offering insights that traditional approaches may overlook.\\
+Moreover, the study sheds light on the various strategies employed to enhance the performance of classification methods within the context of injury prediction. Preprocessing steps, such as data cleaning and normalization, are employed to ensure the quality and consistency of input data. Over- and undersampling methods are utilized to address class imbalances inherent in injury datasets, thereby improving the robustness of predictive models.\\
+Furthermore, hyperparameter tuning, feature selection, and dimensionality reduction techniques are leveraged to optimize the performance and efficiency of ML models. These methodologies enable researchers to identify the most relevant predictors and streamline the predictive process, enhancing the accuracy and interpretability of injury prediction models.\\
+Overall, the findings of this systematic review underscore the burgeoning role of machine learning in revolutionizing injury prediction and prevention strategies in sports. By harnessing the power of advanced data-driven techniques, researchers and practitioners can unlock new insights into injury dynamics, paving the way for more effective and targeted interventions to safeguard athlete well-being and optimize performance outcomes.
+\\
+
+In [4], the discussion centers on the inherent risks of overuse injuries in sports, particularly in the context of running, where excessive exertion can predispose athletes to physical strain and injury. While sports offer a plethora of benefits, from physical fitness to mental well-being, the potential for overuse injuries looms large, underscoring the critical importance of early detection and intervention to safeguard athlete health and overall well-being.\\
+The study highlights a notable gap in existing machine learning methods, particularly in their approach to exertion recognition. While recent advancements in machine learning have enabled the development of sophisticated models for activity recognition, these methods often overlook the nuanced impact of individual characteristics such as age or sex on exertion levels. This oversight has significant implications for injury prevention efforts, as individualized approaches are essential for accurately assessing and mitigating injury risks tailored to each athlete's unique profile.\\
+To address this gap, the study proposes a novel personalized machine learning system designed to account for individual characteristics in exertion recognition and injury prevention. At the core of this approach is a transfer learning framework, wherein a base model is trained using a shared set of common layers, capturing general patterns and features across all runners. This shared knowledge serves as a foundation for subsequent personalized modeling, enabling the incorporation of individual-specific information into the predictive process.\\
+The personalized machine learning system further refines its approach by developing separate models for male and female runners, recognizing the distinct physiological and biomechanical differences between genders. By accommodating these differences through gender-specific models, the system can more accurately capture the nuances of exertion recognition within different subgroups, thereby enhancing the precision and effectiveness of injury prevention strategies.\\
+Moreover, the study emphasizes the importance of interpretable models in the context of personalized machine learning. By transparently elucidating the factors contributing to exertion recognition and injury risk assessment, interpretable models enable athletes, coaches, and healthcare professionals to make informed decisions and tailor interventions accordingly.\\
+Overall, the proposed personalized machine learning system represents a significant advancement in injury prevention research, offering a tailored approach to exertion recognition that accounts for individual characteristics and gender-specific differences. By harnessing the power of machine learning in a personalized framework, the system holds the potential to enhance injury prevention efforts and promote the long-term well-being of athletes in the realm of competitive running.
+\\
+
+In the paper [5], a pioneering approach for predicting running fatigue is introduced, harnessing the combined power of depth images, joint points, and the Borg scale. This novel method represents a significant departure from traditional fatigue prediction techniques by leveraging advanced technologies to capture rich spatial information about the runner's movements and biomechanics, while also incorporating subjective fatigue assessment through the Borg scale.\\
+At the heart of the proposed method lies the integration of depth images and joint points, which together provide a comprehensive analysis of running biomechanics and posture. Depth images offer a three-dimensional perspective of the runner's movements, allowing for precise tracking and analysis of key kinematic parameters such as joint angles and body position. By complementing this spatial information with joint points, which serve as anatomical landmarks, the method achieves a holistic understanding of the runner's gait and movement patterns.\\
+Furthermore, the incorporation of the Borg scale adds a crucial dimension to fatigue assessment, enabling subjective evaluation of the runner's perceived exertion levels. The Borg scale, a widely used tool in sports science and exercise physiology, allows athletes to rate their level of perceived exertion on a numerical scale, providing valuable insights into their subjective experience of fatigue.\\
+Compared to existing fatigue prediction techniques, which often rely on intrusive sensors or subjective self-reports, the proposed method offers a more unobtrusive and objective approach to fatigue assessment. By leveraging depth images and joint points, the method circumvents the need for cumbersome sensor attachments or invasive monitoring devices, allowing for seamless integration into the runner's training regimen.\\
+Moreover, the real-time monitoring capabilities of the proposed method make it particularly well-suited for a wide range of applications, including sports training, rehabilitation, and fitness tracking. By providing timely feedback on running fatigue levels, athletes and coaches can adjust training intensity and duration to optimize performance and minimize injury risk.\\
+In summary, the paper presents a groundbreaking approach to predicting running fatigue, combining advanced technology with subjective assessment to offer a comprehensive and objective method for fatigue monitoring. With its potential to revolutionize fatigue assessment in various settings, the proposed method holds promise for enhancing athlete performance and well-being in the realm of competitive running and beyond.
+\\
+
+In article [6], the paramount importance of managing sports performance takes center stage, highlighting the multifaceted objectives of enhancing athlete performance and mitigating injury risk within the sports industry. Recognizing the complex interplay of various factors such as player health, emotional well-being, exercise load, and physical intensity requirements, the study underscores the critical need for comprehensive strategies to achieve these objectives.\\
+Central to the discussion is the pivotal role of injury prediction in injury prevention efforts, serving as a cornerstone indicator of the effectiveness of preventive measures. By accurately identifying potential injury risks before they manifest, injury prediction models empower sports practitioners to implement timely interventions and preemptively address emerging issues, thereby safeguarding athlete health and well-being.\\
+The proposed objective outlined in the study revolves around the development and utilization of an Artificial Neural Network (ANN) to establish a hierarchical machine learning prediction system for detecting player injuries. Unlike traditional injury prediction models that may rely on simplistic algorithms or limited datasets, the ANN framework offers a sophisticated and adaptive approach capable of capturing complex patterns and relationships within early performance and exercise load data.\\
+At the heart of this personalized approach lies the recognition of the unique physiological and biomechanical profiles of individual athletes. By leveraging early performance and exercise load data specific to each player, the ANN aims to tailor injury prediction models to the individual characteristics and training regimens of athletes. This personalized approach enhances the sensitivity and specificity of injury detection, enabling practitioners to identify potential injury risks at an early stage and implement targeted preventive measures accordingly.\\
+Moreover, the hierarchical nature of the machine learning prediction system allows for the integration of multiple layers of information, ranging from physiological markers to biomechanical parameters and psychological factors. By synthesizing these diverse dimensions of data, the ANN framework achieves a more holistic understanding of injury risks, enhancing the accuracy and reliability of injury prediction models.\\
+In summary, the study proposes an innovative approach to injury prediction in sports performance management, leveraging the power of Artificial Neural Networks to develop personalized prediction models capable of early detection and intervention. By prioritizing individualized strategies and comprehensive data integration, the proposed framework holds promise for enhancing injury prevention efforts and optimizing athlete performance outcomes in the dynamic landscape of sports.
+\\
+
+Paper [7], a compelling study delves into the utilization of comprehensive datasets encompassing data from training sessions, competitions, and weather conditions for the prediction of race results and injuries in the context of competitive running. Leveraging state-of-the-art machine learning techniques, the study implements two neural network models using the PyTorch framework and evaluates their performance using realistic ultramarathon runner data.\\
+The first neural network model is tailored to predict the kilometers run for a given duration, providing valuable insights into runner performance and pacing strategies. By leveraging a rich dataset comprising information from training sessions and competitions, the model harnesses the power of machine learning to discern patterns and trends in runner behavior, enabling accurate predictions of running distance based on temporal parameters.\\
+In parallel, the second neural network model is designed to classify the occurrence of injuries based on the running distance, shedding light on the intricate relationship between training volume and injury risk in competitive running. By analyzing the cumulative distance covered by runners over time, the model offers a proactive approach to injury prevention, enabling practitioners to identify potential injury risks and implement targeted interventions accordingly.\\
+The results of the study demonstrate satisfactory performance for both neural network models, with the first model exhibiting superior predictive capabilities. This highlights the potential of machine learning techniques to leverage diverse datasets and extract valuable insights for performance optimization and injury prevention in competitive running.\\
+Furthermore, the study introduces a companion mobile application designed for dataset construction purposes, enhancing the utility and accessibility of the research findings for practitioners. By providing a user-friendly interface for data collection and analysis, the mobile application empowers researchers and coaches to leverage the insights gleaned from the study's findings in real-world settings, thereby bridging the gap between research and practice in sports science.\\
+In summary, the study represents a significant contribution to the field of sports science by demonstrating the efficacy of machine learning techniques in predicting race results and injuries in competitive running. Through the implementation of neural network models and the development of a companion mobile application, the study offers valuable tools and insights to practitioners seeking to optimize athlete performance and mitigate injury risks in the dynamic and demanding world of competitive running.
+\\
+
+According to [8], the narrative revolves around the transformative impact of technology and data analysis on the landscape of sports, particularly in the context of moving beyond traditional reliance solely on players' abilities towards a more data-driven approach. As sports transition from recreational activities to professional endeavors and lucrative industries, the integration of technology and data analysis has emerged as a fundamental requirement for achieving performance objectives and gaining a competitive edge.\\
+At the forefront of this paradigm shift is the role of classification as a technological tool that plays a pivotal role in organizing and categorizing vast amounts of sports data. With sports generating copious amounts of data each season, encompassing various facets such as teams, matches, and players, the ability to effectively classify and analyze this data has become indispensable for managers, coaches, and analysts.\\
+Classification of sports data serves a myriad of purposes, ranging from match result prediction to player performance evaluation, injury prediction, talent identification, and match strategy assessment. By employing sophisticated algorithms, sports stakeholders can glean valuable insights from data, enabling informed decision-making and strategic planning across various aspects of sports management and performance optimization.\\
+The study highlights the diverse array of algorithms employed in sports data classification, with specific applications ranging from predicting basketball results and monitoring player health to devising match strategies against different opponents. These algorithms serve as invaluable tools for coaches and managers, providing them with actionable insights and strategic guidance to enhance team performance and achieve desired outcomes on the field.\\
+Furthermore, the study emphasizes the importance of preprocessing procedures in enhancing the quality of sports datasets. By implementing preprocessing techniques, such as data cleaning, normalization, and feature engineering, researchers can ensure that the data used for classification is accurate, consistent, and representative, thereby improving the effectiveness and reliability of classification models.\\
+In this study, classification methods are applied to sports datasets both with and without preprocessing, allowing for a comparative analysis of their performance and effectiveness. By evaluating the impact of preprocessing procedures on classification outcomes, the study provides valuable insights into best practices for sports data analysis and classification, ultimately contributing to the ongoing evolution of data-driven approaches in sports management and performance optimization.
+\\
+
+In the prospective study outlined in [9], a cohort of 355 elite male youth football players, aged 10–18, underwent a comprehensive pre-season neuromuscular screening protocol. This protocol encompassed a range of anthropometric measurements and functional assessments, including the single-leg countermovement jump (SLCMJ), single-leg hop for distance (SLHD), 75\% hop distance and stick (75\%Hop), Y-balance anterior reach, and tuck jump evaluation. The primary aim of the study was to monitor injury incidence throughout one competitive season and to compare the predictive capabilities of traditional regression analyses with supervised machine learning algorithms, specifically constructed using decision trees, in assessing injury risk profiling.\\
+The findings from the study indicated that while multivariate logistic regression analysis of continuous data identified SLCMJ asymmetry as the sole significant predictor of injury, with a specificity of 97.7\% and sensitivity of 15.2\%, resulting in an AUC of 0.661, the best-performing decision tree model exhibited a specificity of 74.2\% and sensitivity of 55.6\%, with an AUC of 0.663.\\
+Furthermore, all variables contributed to the final machine learning model, with asymmetry in SLCMJ, 75\%Hop, and Y-balance, alongside tuck jump knee valgus and anthropometric measures. This comprehensive approach highlights the multifactorial nature of injury risk profiling in elite youth football players, with a range of neuromuscular and anthropometric factors contributing to injury susceptibility.\\
+Overall, the study underscores the potential of machine learning algorithms, particularly decision trees, in enhancing injury risk assessment in elite youth football players. By incorporating multiple variables and leveraging complex interactions between predictors, machine learning approaches offer a promising avenue for improving injury prevention strategies and optimizing player welfare in competitive sports settings.
+\\
+
+In paper [10], the primary objective is to harness machine learning algorithms to predict the heightened risk of musculoskeletal injuries following sport-related concussions. This study operates within a broader context where previous research has delved into diverse methods for assessing injury risk in athletes, encompassing the utilization of health data from wellness and fitness surveys, reaction times from cognitive tests, and biometric information.\\
+The study likely employed various machine learning techniques, ranging from traditional regression models to more advanced algorithms such as decision trees, random forests, or neural networks. By training these models on historical data encompassing injury occurrences and associated predictors, the researchers sought to develop accurate and reliable injury risk prediction models tailored to the unique characteristics of the athlete population under study.\\
+The paper represents a significant contribution to the field of sports medicine and injury prevention by leveraging machine learning approaches to enhance the identification of musculoskeletal injury risks following sport-related concussions. By integrating diverse sources of data and employing advanced analytical techniques, the study offers valuable insights into the complex interplay between concussion history, health status, cognitive function, and musculoskeletal injury susceptibility in athletes, thereby informing targeted interventions and preventive strategies to safeguard athlete well-being.
+
+\newpage
+
+\begin{center}
+\section{ \Large SYSTEM DESIGN}
+\end{center}
+\\
+\begin{normalsize}
+\tab In the system design, the development of injury prediction models for runners follows a systematic process encompassing data collection, visualization and dimensionality reduction, and the application of machine learning and deep learning algorithms.\\
+
+\tab The system aggregates comprehensive data pertaining to runner health, training regimens, biomechanics, and injury history. This includes variables like running mileage, intensity, duration, biomechanical metrics, past injuries, recovery strategies, and environmental factors. Data may be sourced from wearable devices, fitness trackers, electronic health records, training logs, and surveys. It is stored in a structured format for efficient access and processing.\\
+
+\tab Before applying machine learning algorithms, the system employs data visualization and dimensionality reduction techniques to gain insights and reduce complexity. Visualization methods like scatter plots, histograms, and heatmaps help explore relationships, identify patterns, and detect outliers. Dimensionality reduction techniques such as Principal Component Analysis (PCA) or t-Distributed Stochastic Neighbor Embedding (t-SNE) reduce feature dimensionality while preserving information.\\
+
+\tab The system applies various machine learning algorithms to develop injury prediction models, including Support Vector Machine (SVM), Bagging, XGBoost, Decision Trees, Multilayer Perceptron (MLP), Recurrent Neural Network (RNN), and Long Short-Term Memory (LSTM). Algorithms may be applied individually or in combination based on data characteristics and prediction requirements. Hyperparameter tuning and cross-validation optimize model performance. Trained models are evaluated using metrics like accuracy, precision and F1-score to assess predictive capabilities.\\
+
+\tab By progressing through these stages, the system effectively constructs injury prediction models tailored for runners. Leveraging advanced machine learning techniques, comprehensive datasets, it delivers actionable insights for injury prevention and management in the running community.
+\end{normalsize}
+\\\\
+\begin{large}
+\textbf{3.1 Architecture}
+\end{large}
+\\
+\begin{normalsize}
+\tab Utilizing machine learning algorithms like XGBooster and Bagging, this system trains models for advanced injury prediction. Tailored for runners, its core objective is to ensure their sustained well-being by preemptively identifying and mitigating injury risks. By leveraging advanced techniques, the system empowers athletes to stay healthy, maintain peak fitness, and avoid long-term injuries. Through its predictive capabilities, it provides a proactive approach to injury prevention, allowing runners to pursue their athletic endeavors with confidence. In essence, this system serves as a valuable tool for enhancing both the performance and longevity of runners in the competitive sports arena. elaborate system design.\\
+
+\tab The system for advanced injury prediction tailored for runners leverages cutting-edge machine learning algorithms such as XGBooster and Bagging to develop robust predictive models. Its core objective is to safeguard the sustained well-being of runners by preemptively identifying and mitigating injury risks, thereby enabling athletes to maintain peak fitness and avoid long-term injuries.\\
+
+\tab The architecture for developing the injury prediction model begins with obtaining the dataset from Kaggle, a popular platform for datasets and machine learning competitions. Upon importing the essential libraries for analysis, the dataset undergoes data preprocessing to ensure its quality and readiness for modeling. This preprocessing step includes checking for null values, outliers, and inconsistencies in the data.\\
+
+\tab Upon inspection, if the data is found to be clean and free of significant issues, the next step is to optimize the model by eliminating irrelevant attributes that do not contribute significantly to injury prediction. This feature selection or dimensionality reduction process helps streamline the dataset and improve the efficiency of the modeling phase.\\
+
+\tab Given the potentially large size of the dataset, training the injury prediction model involves utilizing a variety of machine learning algorithms. These algorithms include Support Vector Machine (SVM), Bagging, and XGBoost, each chosen for its ability to handle different types of data and capture different patterns within the dataset. The training phase involves feeding the preprocessed data into these algorithms and fine-tuning their parameters to achieve optimal performance.\\
+
+\tab Following the training phase, the focus shifts to evaluating the accuracy of injury forecasts. This evaluation involves assessing the model's performance on a separate validation dataset or through techniques such as cross-validation. Metrics such as accuracy, precision, recall, and F1-score are commonly used to measure the model's predictive capabilities and generalization performance.\\
+
+\tab Overall, this systematic approach ensures a comprehensive evaluation of the dataset and the development of a refined and effective injury prediction model. By leveraging advanced algorithms and thorough data analysis techniques, the architecture aims to deliver accurate and actionable insights for injury prevention and management in the realm of competitive running.
+\end{normalsize}
+\\
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=12cm,height=10.2cm]{arch.png}
+\end{center}
+
+\begin{center}
+\renewcommand{\thefigure}{3.1.1}
+\caption{\footnotesize Architecture of the system}
+\end{center}
+\end{figure}\\
+
+\begin{large}
+\textbf{3.2 Tools and Technologies}\\
+\end{large}
+\begin{normalsize}
+\textbf{3.2.1 Tools}
+    \begin{itemize}
+         \item \textbf{Google Colab }: While not a specific Python module, Google Colab is a cloud-based environment utilized here to run Python code interactively, providing access to GPUs and facilitating collaborative coding.
+        \item \textbf{Pandas} : It refers to a popular Python library that is widely used for data manipulation and analysis.
+        \item \textbf{Numpy}: It provides multidimensional arrays and matrices, mathematical functions, and high-level operations for data analysis and visualization.
+        \item \textbf{Sklearn}: It is a Python library that provides simple and efficient tools for predictive data analysis. It offers various algorithms for classification, regression, clustering, dimensionality reduction, model selection and preprocessing.
+        \item \textbf{Seaborn}: It is a library mostly used for statistical plotting in Python. It is built on top of Matplotlib and provides beautiful default styles and color palettes to make statistical plots more attractive.
+        \item \textbf{Matplotlib}: It is a comprehensive library for creating static, animated, and interactive visualizations in Python.
+     \end{itemize}
+\end{normalsize}
+
+\newpage
+\begin{normalsize}
+    \textbf{3.2.2 Technologies}
+    \begin{itemize}
+        \item \textbf{Machine Learning}\\
+        Machine learning is a branch of artificial intelligence focused on developing algorithms that enable computers to learn from data and make predictions or decisions without being explicitly programmed. It involves training models on large datasets, where patterns and relationships are identified and used to make predictions or decisions on new, unseen data. Machine learning techniques are widely used in diverse fields such as finance, healthcare, marketing, and autonomous vehicles, to solve complex problems including classification, regression, clustering, and anomaly detection. With advancements in algorithms and computing power, machine learning continues to revolutionize industries and drive innovation in various domains.
+        \item \textbf{Deep Learning}\\
+Deep learning (also known as deep structured learning or hierarchical learning) is
+part of a broader family of machine learning methods based on learning data representations, as
+opposed to task-specific algorithms. Learning can be supervised,
+semi-supervised or unsupervised. Deep learning architectures such as deep neural
+networks, deep belief networks and recurrent neural networks have been applied to
+fields including computer vision, speech recognition, natural language processing, audio recognition,
+social network filtering, machine translation, bioinformatics and drug
+design where they have produced results comparable to and in some cases superior to
+human experts. Deep learning models are vaguely inspired by information processing
+and communication patterns in biological nervous systems yet have various differences
+from the structural and functional properties of biological brains, which make them
+incompatible with neuroscience evidences.
+    \end{itemize}
+\end{normalsize}
+\\\\
+
+\begin{large}
+\textbf{ 3.3 UML Diagram}\\
+\end{large}\\
+\tab Unified Modeling Language (UML) is a general-purpose modeling language. The main aim of UML is to define a standard way to visualize the way a system has been designed. It is quite similar to blueprints used in other fields of engineering. UML is not a programming language, it is rather a visual language.\\ 
+
+UML is an acronym that stands for Unified Modeling Language. Simply put, UML is a modern
+approach to modeling and documenting software. In fact, it’s one of the most popular business
+process modeling techniques. It is based on diagrammatic representations of software components.\\
+
+A UML diagram with the purpose of visually representing a system along with its main actors, roles,
+actions, artifacts or classes, in order to better understand, alter, maintain, or document information
+about the system.
+\\
+
+\textbf{3.3.1. Class Diagram}\\
+\tab Class diagrams are a type of UML (Unified Modeling Language) diagram used in software engineering to visually represent the structure and relationships of classes within a system i.e. used to construct and visualize object-oriented systems. \\
+
+Class diagrams provide a high-level overview of a system’s design, helping to communicate and document the structure of the software. They are a fundamental tool in object-oriented design and play a crucial role in the software development lifecycle.\\
+
+A class diagram is a type of structural diagram in the Unified Modeling Language (UML) that represents the structure and relationships of classes within a system or software application. It provides a visual overview of the classes, their attributes, methods, and associations with other classes.\\
+
+In software development, a class represents a blueprint or template for creating objects. Each class encapsulates data (attributes) and behaviors (methods) related to a specific concept or entity in the system. Class diagrams help developers understand the organization of classes within a system and how they interact with each other.
+\\
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=12cm, height=8cm]{class.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{3.3.1.1}
+\caption{\footnotesize Class Diagram }
+\end{center}
+\end{figure}
+
+\textbf{3.3.2. Activity Diagram}\\
+\tab Activity Diagrams are used to illustrate the flow of control in a system and refer to the steps involved in the execution of a use case. We can depict both sequential processing and concurrent processing of activities using an activity diagram ie an activity diagram focuses on the condition of flow and the sequence in which it happens.\\
+
+An activity diagram is a type of behavioral diagram in the Unified Modeling Language (UML) that visually represents the flow of activities or actions within a system or process. It provides a structured way to illustrate the sequence of steps involved in completing a task, the decision points along the way, and the interactions between different components or actors within the system.\\
+
+Activity diagrams are commonly used during the analysis and design phases of software development to model the behavior of a system or process. They help stakeholders and developers understand the flow of activities, identify potential bottlenecks or inefficiencies, and ensure that all necessary tasks are accounted for. Additionally, activity diagrams can be used to document existing processes, analyze and improve workflows, and communicate complex processes in a clear and visual manner.
+\\
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=10cm, height=8cm]{activity.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{3.3.1.1}
+\caption{\footnotesize Activity Diagram }
+\end{center}
+\end{figure}
+\\\\\\\\\\\\
+
+%----------------4. Implmentation ---------------------------
+\begin{center}
+\section{ \Large IMPLEMENTATION}
+\end{center}
+\\
+\begin{large}
+\textbf{4.1 Dataset}\\
+\end{large}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=350pt, height=250pt]{dataset.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.1.1}
+\caption{\footnotesize Dataset(https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/UWU9PV)[11]}
+\end{center}
+\end{figure}\\
+\text
+\tab
+ The project utilizes a variety of data sources, including player-specific information such as early-doing ability and exercise load data. The data is collected from different sources, including internal burden information, external burden information and review data.The data set contains samples from 74 runners, of whom 27 are women and 47 are men. At the moment of data collection, they had been in the team for an average of 3.7 years. Most athletes competed on a national level, and some also on an international level.The integration of diverse data sets aims to improve the accuracy of injury prediction.
+\\
+\newpage
+\text
+For the weekly overview, the summarized features include:\\
+\textbf{i}.	Total sessions: The overall number of training sessions completed.\\
+\textbf{ii}. Rest days: The count of days without any training.\\
+\textbf{iii}. Total distance: The cumulative running mileage covered.\\
+\textbf{iv}. Max distance in a day: The longest distance covered in a single day.\\
+\textbf{v}.	Total km in Z3-Z4-Z5-T1-T2: The distance covered at or above the aerobic threshold, including speeds in Z3 or faster.\\
+\textbf{vi}. Tough sessions: The number of high-intensity sessions in Z5, T1, T2, indicating efforts above the anaerobic threshold or intensive track intervals.\\
+\textbf{vii}. Interval session days: The days featuring a Z3 or faster training session.\\
+\textbf{viii}. Total km in Z3-4: The distance covered in the Z3- Z4 range, which falls between the aerobic and anaerobic thresholds.\\
+\textbf{ix}. Max Z3-4 distance in a day: The farthest distance covered in the Z3-Z4 range within a single day.\\
+\textbf{x}.	Total km in Z5-T1-T2: The total distance covered at Z5, T1, and T2 speeds.\\
+\textbf{xi}. Max Z5-T1-T2 distance in a day: The longest distance covered at Z5-T1-T2 speeds in a single day.\\
+\textbf{xii}. Cross-training hours: The total time spent on alternative training methods.\\
+\textbf{xiii}. Strength training sessions: The total number of strength training sessions completed.\\
+\textbf{xiv}. Average exertion: The mean rating of perceived exertion for all training sessions.\\
+\textbf{xv}. Minimum exertion: The lowest perceived exertion rating across all sessions for the week.\\
+\textbf{xvi}. Maximum exertion: The highest perceived exertion rating across all sessions for the week.\\
+\textbf{xvii}. Average training success: The mean rating of how successful each training session felt to the athlete.\\
+\textbf{xviii}. Minimum training success: The lowest training success rating for the week.\\
+\textbf{xix}. Maximum training success: The highest training success rating for the week.\\
+\textbf{xx}.Average recovery: The mean rating of how well-rested the athlete felt before each session.\\
+\textbf{xxi}. Minimum recovery: The lowest restfulness rating before any session during the week.\\
+\textbf{xxii}. Maximum recovery: The highest restfulness rating before any session during the week
+
+
+\\
+\newpage
+\begin{large}
+\textbf{4.2 Code }\\
+\end{large}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=14cm, height=5cm]{lib1.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.1}
+\caption{\footnotesize Importing Libraries }
+\end{center}
+Importing necessary libraries for the project.
+\begin{center}
+\includegraphics[width=14cm, height=5cm]{datapre.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.2}
+\caption{\footnotesize Reading the dataset and data preprocessing }
+\end{center}
+\end{figure}
+\\
+Reading the dataset and checking if it has any null values.
+\newpage
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=14cm, height=5cm]{dataext.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.3}
+\caption{\footnotesize Performing data extraction}
+\end{center}
+\\
+Since the data is very high dimensional, the attributes have been reduced from 71 to 40.
+\begin{center}
+\includegraphics[width=14cm, height=5cm]{imbalance.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.4}
+\caption{\footnotesize Non-Injury and Injury instances}
+\end{center}
+\end{figure}
+By observing the above bar chart, it is noticed that dataset is biased for non-injured cases and the dataset comprises of 575 injury instances and 42224 non-injury instances.\\
+
+\afterpage{\clearpage}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=400pt, height=250pt]{balanced.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.5}
+\caption{\footnotesize Non-Injury and Injury instances}
+\end{center}
+\\
+Here the dataset is balanced. This is done by randomly selecting 575 non-injury instances.
+\begin{center} 
+\includegraphics[width=400pt, height=250pt]{svm.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.6}
+\caption{\footnotesize Predicting Injury with SVM algorithm}
+\end{center}
+\end{figure}\\
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=400pt, height=250pt]{bag.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.7}
+\caption{\footnotesize Predicting Injury with Bagging algorithm }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=400pt, height=250pt]{XG.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.8}
+\caption{\footnotesize Predicting Injury with XGBooster algorithm}
+\end{center}
+\end{figure}\\
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=400pt, height=250pt]{decision.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.9}
+\caption{\footnotesize Predicting Injury with Decision Tree algorithm }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=400pt, height=250pt]{MLP.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.10}
+\caption{\footnotesize Predicting Injury with MLP algorithm}
+\end{center}
+\end{figure}\\
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=400pt, height=250pt]{rnn.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.11}
+\caption{\footnotesize Predicting Injury with RNN algorithm }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=400pt, height=250pt]{lstm.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{4.2.12}
+\caption{\footnotesize Predicting Injury with LSTM algorithm}
+\end{center}
+\end{figure}
+\tab
+\newpage
+\tab To address the class imbalance in the dataset, balanced the class distribution by randomly selecting a subset of instances from the majority class (non-injury) to match the number of instances in the minority class (injury). By ensuring a more equitable representation of both classes in the training data, we aimed to prevent the model from being biased towards the majority class and improve its ability to learn from the minority class instances. To further address the imbalance in the dataset, we augmented the minority class (injury) by adding an additional 575 instances, resulting in a balanced dataset comprising 1150 instances of both injury and non-injury classes. This augmentation ensured an equal representation of both classesin the training data, facilitating more robust model learning without the need for downsampling the majority class. To further improve class balance, we augmented the minority class (injury) by adding an additional 575 instances, resulting in a balanced dataset comprising 1725 instances of both injury and non-injury classes. This augmentation ensured a more equitable representation of both classes in the training data, mitigating potential biases and enhancing the model’s ability to learn meaningful patterns from both classes.\\
+
+\tab  To achieve greater class balance, the minority class (injury) was augmented by incorporating an additional 575 instances. Consequently, the dataset now comprises 2300 instances, evenly distributed between injury and non-injury classes. This augmentation facilitated a more balanced representation of both classes during model training, reducing potential biases and enabling the model to discern meaningful patterns from both categories more effectively. The minority class (injury) underwent augmentation by adding an additional 575 instances. As a result, the dataset expanded to encompass 2875 instances, with an equal distribution between injury and non-injury classes. This augmentation facilitated a more balanced representation of both classes dur- ing model training, effectively mitigating potential biases and enhancing the model’s ability to discern meaningful patterns from both categories.\\
+
+
+\tab A standardized procedure was followed for building the                model. The balanced dataset was divided into training and validation subsets, and the algorithm was trained on the training subset. The trained model’s performance was then evaluated on the validation set, calculating metrics such as accuracy, precision, and F1 Score to assess its effectiveness in injury classification. Throughout this process, an iterative analysis of the model’s performance was conducted, adjusting parameters or employing feature engineering techniques as necessary to improve performance.\\
+
+\tab By adhering to rigorous methodological practices, the pro- posed study aimed to establish a solid foundation for the investigation of injury prediction in athletic runners. This methodological framework laid the groundwork for the systematic exploration of algorithmic performance and its implications for injury classification, thereby facilitating the development of robust predictive models tailored to the unique challenges of athletic injury prevention.\\
+
+\tab
+
+
+\newpage
+\begin{center}
+\section{ \Large RESULTS \& DISCUSSION}
+\end{center}
+\tab
+\text
+With a clear understanding of the dataset, appropriate evaluation metrics were meticulously selected to comprehensively assess the performance of the predictive models. These evaluation metrics encompassed a diverse array, including the confusion matrix, ROC curve, accuracy, precision, and F1 Score. Each metric offered unique insights into the models’ predictive capabilities, allowing for a multifaceted examination of their performance. The confusion matrix, for instance, provided valuable insights into the models’ classification performance, delineating the distribution of true positives, true negatives, false positives, and false negatives. Concurrently, the ROC curve facilitated an assessment of the models’ ability to balance the true positive rate and false positive rate across various classification thresholds.\\
+\tab
+Accuracy, as a fundamental measure of model performance, provided an overarching evaluation of predictive accuracy, offering insights into the overall effectiveness of the models. Moreover, precision and F1 Score delved deeper into the models’ ability to correctly identify positive instances and maintain a balance between precision and recall. These metrics played a pivotal role in discerning the models’ performance nuances, elucidating their strengths and weaknesses in differentiating between injury and non-injury cases. The comprehensive evaluation, facilitated by these diverse metrics, offered invaluable insights into the performance of machine learning and deep learning algorithms across the augmented dataset.\\
+\tab
+The outcomes of this thorough evaluation provided a nuanced understanding of the models’ performance across various dimensions. The confusion matrices, depicted in Fig(5.1-5.7), showcased the models’ proficiency in accurately classifying a significant number of instances as true positives and true negatives, underscoring their capability to effectively discern between injury and non-injury cases. Furthermore, the ROC curves illustrated the models' adeptness in adjusting their classification thresholds, offering a nuanced portrayal of their performance across different operating points.\\
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{SVM2875.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.1}
+\caption{\footnotesize Confusion Matrix for SVM }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{Bagging2875.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.2}
+\caption{\footnotesize Confusion Matrix for Bagging }
+\end{center}
+\end{figure}
+\\
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{XgBooster2875.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.3}
+\caption{\footnotesize Confusion Matrix for XGBooster }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{dtree2875.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.4}
+\caption{\footnotesize Confusion Matrix for Decision Tree }
+\end{center}
+\end{figure}
+\\
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{MLP2875.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.5}
+\caption{\footnotesize Confusion Matrix for MLP }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{rnn2875.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.6}
+\caption{\footnotesize Confusion Matrix for RNN }
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm, height8cm]{lstm2875.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.7}
+\caption{\footnotesize Confusion Matrix for LSTM }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{VC1.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.8}
+\caption{\footnotesize Validation Curve for SVM }
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{VC2.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.9}
+\caption{\footnotesize Validation Curve for Bagging}
+\end{center}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{VC3.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.10}
+\caption{\footnotesize Validation Curve for XGBooster }
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{VC4.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.11}
+\caption{\footnotesize Validation Curve for Decision Tree }
+\end{center}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{VC5.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.12}
+\caption{\footnotesize Validation Curve for MLP }
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{VC6.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.13}
+\caption{\footnotesize Validation Curve for RNN }
+\end{center}
+\\
+\begin{center}
+\includegraphics[width=14cm, height=8cm]{VC7.png}
+\end{center}
+\begin{center}
+\renewcommand{\thefigure}{5.14}
+\caption{\footnotesize Validation Curve for LSTM }
+\end{center}
+\end{figure}
+\newpage
+\tab
+The validation curves, as illustrated in Figures 5.8 through 5.14, offer a comprehensive view of the performance dynamics of the mentioned algorithms. These curves showcase the behavior of both training and cross-validation scores as the complexity of the models varies. They provide a window into the algorithm's performance across a spectrum of complexities, revealing distinct patterns that are crucial for understanding the model's behavior.\\
+\tab By examining these curves, one can discern how the performance of the algorithms changes with the adjustment of model complexity. Typically, as the complexity increases, the training score tends to improve, capturing more nuances and intricacies in the data. However, this improvement may not necessarily translate to better generalization performance, as indicated by the cross-validation score.\\
+\tab The curves elucidate the delicate balance between bias and variance in the learning process. At lower levels of complexity, the model may exhibit high bias and low variance, resulting in underfitting. Conversely, at higher levels of complexity, the model may demonstrate low bias but high variance, indicative of overfitting. The validation curves help in identifying the sweet spot – the optimal level of complexity where the trade-off between bias and variance is minimized, leading to the best generalization performance.\\
+\tab This analysis provides invaluable guidance for model selection and tuning, empowering practitioners to make informed decisions about the complexity of the model. By selecting the appropriate complexity level, one can mitigate the risk of underfitting or overfitting, ultimately enhancing the algorithm's predictive efficacy and ensuring its robust performance on unseen data.\\
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=500pt, height=200pt]{tab1.png}
+  \captionsetup{type=table, labelformat=simple} % Change the type of caption to "table" and set labelformat to simple
+  \renewcommand{\thetable}{5.1(a)} % Set the table number to 5.1
+  \caption{\footnotesize Performance metrics for Machine Learning Algorithms}
+  \label{fig:tab1}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=500pt, height=200pt]{tab2.png}
+  \captionsetup{type=table, labelformat=simple} % Change the type of caption to "table" and set labelformat to simple
+  \renewcommand{\thetable}{5.1(b)} % Set the table number to 5.2
+  \caption{\footnotesize Performance metrics for Deep Learning Algorithms}
+  \label{fig:tab2}
+\end{figure}
+
+\tab
+The results in Table 5.1 (a) and (b), suggest that Bagging and Decision Tree may be promising algorithm for predicting athletic runner injuries, with potentially being more conservative in its predictions. However, further analysis and consideration of other factors, such as computational efficiency and interpretability, are warranted for comprehensive evaluation and selection of the most suitable algorithm.\\
+\tab
+The performance of the algorithms varied across different sizes in the dataset. Notably, models trained using Bagging and Decision Tree consistently shown the defined thresholds for accuracy and precision, indicating their robustness in predicting athletic runner injuries. These findings underscore the importance of dataset augmentation and the selection of appropriate algorithms in enhancing model performance for injury prediction tasks.\\
+\tab
+The analysis of the results reveals a notable trend where in machine learning (ML) algorithms demonstrated comparatively better performance   than   deep   learning (DL) algorithms across various performance metrics. This observation can be attributed to the nature of the dataset, which predominantly comprises numerical features.\\
+
+
+
+
+
+\newpage
+\begin{center}
+\section{ \Large CONCLUSION \& FUTURE SCOPE}
+\end{center}
+
+\tab
+In conclusion, the Athletic Runner Injury Prediction System project represents a significant advancement in the realm of sports science, addressing a crucial need for predicting and preventing injuries among athletic runners. By harnessing the power of comprehensive datasets and integrating biomechanical insights, the system has demonstrated its efficacy in forecasting potential injuries before they occur. This proactive approach empowers athletes and their support teams to make informed decisions regarding training protocols, ultimately contributing to improved performance and reduced risk of injury.\\
+The user-friendly interface of the system ensures accessibility and practicality for athletes and their coaches, streamlining the process of injury prevention and management. By providing real-time insights into an athlete's physical condition and injury risk, the system enables personalized training programs tailored to individual needs. Moreover, the integration of machine learning algorithms allows for continuous refinement and optimization, ensuring that the system remains adaptive and responsive to the evolving demands of sports science.\\
+While the project has achieved significant milestones, there are still areas for future development and expansion. One avenue for growth is the incorporation of a multimodal approach, which would involve integrating diverse data sources such as physiological metrics, environmental factors, and psychological variables. This holistic approach would provide a more comprehensive understanding of an athlete's overall health and well-being, enabling more accurate injury predictions and personalized interventions.\\
+The Athletic Runner Injury Prediction System project represents a significant milestone in the intersection of technology and sports medicine. As we continue to explore new avenues for enhancing athlete well-being and performance, this system serves as a beacon of innovation and possibility. By harnessing the power of data-driven strategies and cutting-edge technologies, we can pave the way for a future where injuries are minimized, and athletes can thrive to their fullest potential.\\
+
+\newpage
+\begin{large}
+\textbf{REFERENCES}
+\end{large}
+
+\vspace*{0.08in}
+\begin{normalsize}
+
+[1] Bullock, Garrett S., et al. ”Just how confident can we be in predicting sports injuries? A systematic review of the methodological conduct and performance of existing musculoskeletal injury prediction models in sport.” Sports medicine 52.10 (2022): 2469-2482.\\
+
+[2]	Lovdal, S. Sofie, Ruud JR Den Hartigh, and George Azzopardi. ”Injury prediction in competitive runners with machine learning.” International journal of sports physiology and performance 16.10 (2021): 1522-1531.\\
+
+[3]	Van Eetvelde, Hans, et al. ”Machine learning methods in sport injury prediction and prevention: a systematic review.” Journal of experimental orthopaedics 8 (2021): 1-15.\\
+
+[4] Kathan, Alexander, et al. ”Investigating individual-and group-level model adaptation for self-reported runner exertion prediction from biomechanics.” 2022 E-Health and Bioengineering Conference (EHB). IEEE, 2022.\\
+
+[5] Wang, Bin, and Dongzhi He. ”Prediction method of running fatigue based on depth image.” 2021 IEEE 4th Advanced Information Manage- ment, Communicates, Electronic and Automation Control Conference (IMCEC). Vol. 4. IEEE, 2021.\\
+
+[6] Huang, Chen, and Lei Jiang. ”Data monitoring and sports injury predic- tion model based on embedded system and machine learning algorithm.” Microprocessors and Microsystems 81 (2021): 103654.\\
+
+[7] Nejković, Valentina, Maša Radenković, and Nenad Petrović. "Ultramarathon result and injury prediction using PyTorch." 2021 15th International Conference on Advanced Technologies, Systems and Services in Telecommunications (TELSIKS). IEEE, 2021.\\
+
+[8] Mazidi, Arash, Mehdi Golsorkhtabaramiri, and Naznoosh Etminan. "Sport Result Prediction Using Classification Methods." Journal of Applied Dynamic Systems and Control 3.2 (2020): 39-48.\\
+
+[9]	Oliver, Jon L., et al. "Using machine learning to improve our understanding of injury risk and prediction in elite male youth football players." Journal of science and medicine in sport 23.11 (2020): 1044-1048.\\
+
+[10] Mansouri, Misagh, et al. "A predictive paradigm for identifying elevated musculoskeletal injury risks after sport-related concussion." Sports Orthopaedics and Traumatology 38.1 (2022): 66-74. \\
+
+[11] Lovdal, Sofie; den Hartigh, Ruud; Azzopardi, George, 2021, "Replication Data for: Injury Prediction In Competitive Runners With Machine Learning", https://doi.org/10.34894/UWU9PV, DataverseNL, V1
+\end{normalsize}
+\end{document}
